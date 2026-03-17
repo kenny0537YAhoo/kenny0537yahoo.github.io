@@ -1,0 +1,23 @@
+name: Inject Secret Key
+on:
+  push:
+    branches:
+      - main  # Change this to 'master' if your branch is named master
+
+jobs:
+  inject-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Replace placeholder with GitHub Secret
+        run: |
+          # This swaps the placeholder in your HTML for your saved Secret
+          sed -i "s/KENNY0537KEY/${{ secrets.KENNY0537KEY }}/g" index.html [cite: 1]
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: .
