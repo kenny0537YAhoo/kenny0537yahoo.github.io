@@ -1,6 +1,42 @@
-<div style="text-align: center; margin-top: 100px;">
-    <a href="mailto:kenny0537@yahoo.com?subject=Inquiry" 
-       style="display: inline-block; width: 100%; height: 200px; text-decoration: none; -webkit-tap-highlight-color: transparent;">
-       &nbsp;
-    </a>
-</div>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connecting...</title>
+    <style>
+        /* This makes the whole page a clickable 'backdoor' to your email */
+        html, body {
+            height: 100%;
+            margin: 0;
+            background-color: #ffffff;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body onclick="openMail()">
+
+    <script>
+        // Replace with your actual email
+        var mailUrl = "mailto:your-email@yahoo.com?subject=Contact";
+
+        function openMail() {
+            window.location.href = mailUrl;
+        }
+
+        // Try to trigger it instantly when the page loads
+        window.onload = function() {
+            window.location.href = mailUrl;
+            
+            // If the browser blocks the auto-open, 
+            // the user just taps the blank screen and it pops.
+            setTimeout(function() {
+                if (document.hasFocus()) {
+                    console.log("Waiting for user tap...");
+                }
+            }, 500);
+        };
+    </script>
+
+</body>
+</html>
